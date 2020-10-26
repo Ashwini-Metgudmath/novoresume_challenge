@@ -1,5 +1,3 @@
-const { default: Product } = require("../../frontend/src/components/product/product");
-
 module.exports = (
   firstName,
   lastName,
