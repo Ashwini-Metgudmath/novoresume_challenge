@@ -125,16 +125,17 @@ h1 {
     margin-bottom: 5rem;
 }
 h2 {
-    margin-left: 2rem;
+    margin-left: 3rem;
     display: flex;
     align-items: center;
+    padding-top: 4rem;
 
     &:before {
         content: "\A";
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        background: #00c8aa;
+        // background: #00c8aa;
         display: inline-block;
         margin-right: 1rem;
     }

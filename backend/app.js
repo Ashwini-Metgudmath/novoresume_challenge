@@ -7,20 +7,31 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const users = require('./routes/users');
-const PORT = 5000;
+const PORT = 8080;
 
 dotenv.config();
+
+//console.log("entered app js");
+
 
 app.use(cors());
 app.use( bodyParser.json() ); 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/users', users);
 
-const server = https.createServer({
-    key: fs.readFileSync('./certificates/private.key'),
-    cert: fs.readFileSync('./certificates/public.cert')
-}, app).listen(PORT, () => console.log(`Server is listening on port ${PORT}!`));
+// const server = https.createServer({
+//     key: fs.readFileSync('./certificates/private.key'),
+//     cert: fs.readFileSync('./certificates/public.cert')
+// }, app).listen(PORT, () => console.log(`Server is listening on port ${PORT}!`));
 
+app.listen(PORT, (err) => {
+    if(err){
+      console.log(`Error in connection ${err}`)
+    }
+    else{
+      console.log(`Server listening on port: ${PORT}!`);
+    }
+      });
 module.exports = app;
 
 // If there is an unhandled promise rejection, we throw it and let the uncaughtException handler handle it

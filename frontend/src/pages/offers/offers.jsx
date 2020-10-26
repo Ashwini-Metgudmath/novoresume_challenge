@@ -119,9 +119,107 @@ export default class Offers extends Component {
     };
 
     generateOffer = () => {
-        const html = `<html><span>Example PDF text</span></html>`;
+        const html = `<html>
+        <head></head>
+        
+        <body>
+            <div>
+                <h1>Billing Information</h1>
+            </div>
+            <div >
+                <div >
+                    <h3>First Name  Last name</h3>
+                    <p>Ashwini Metgudmath</p>
+                    <h3>Billing Adress</h3>
+                    <p>Thorupgard alle 8</p>
+                    <h3>Postal Code</h3>
+                    <p>2720</p>
+                </div>
+                <div >
+                    <h3>Email</h3>
+                    <p>ashwini@gmail.com</p>
+                    <h3>Telephone number</h3>
+                    <p>12345678</p>
+                </div>
+            </div>
+            <div>
+                <h1>Products</h1>
+            </div>
+            <div >
+                
+                    <!-- <ProductList products={products} onProductAmountChange={this.onProductAmountChange} saveProducts={this.saveProducts} /> -->
+                
+            </div>
+            <div >
+                <div><h1>Total</h1></div>
+                <div ><h1>$99</h1></div>
+            </div>
+            <footer>
+                <div >
+                    <div><h4>09/08/2020</h4></div>
+                    <div ><h4>page 1</h4></div>
+                </div>
+            </footer>
+        </body>
+        </html>`;
+        
 
-        // Hint: Use the generatePdf(userId, html) function here from frontend/src/calls/calls.js
+    //     const html = `<html>
+    //     <body>
+    //         <div class="heading">
+    //             <h1>Billing Information</h1>
+    //         </div>
+    //         <div class="user-info">
+    //             <div class="info">
+    //                 <h3>First Name  Last name</h3>
+    //                 <p>${this.state.billingInfo.firstName} ${this.state.billingInfo.lastName}</p>
+    //                 <h3>Billing Adress</h3>
+    //                 <p>${this.state.billingInfo.address}</p>
+    //                 <h3>Postal Code</h3>
+    //                 <p>${this.state.billingInfo.postalCode}</p>
+    //             </div>
+    //             <div class="info">
+    //                 <h3>Email</h3>
+    //                 <p>${this.state.billingInfo.email}</p>
+    //                 <h3>Telephone number</h3>
+    //                 <p>${this.state.billingInfo.phoneNr}</p>
+    //             </div>
+    //         </div>
+    //         <div class="heading">
+    //             <h1>Products</h1>
+    //         </div>
+    //         <div class="products">
+                
+    //                 ${<ProductList products={products} onProductAmountChange={this.onProductAmountChange} saveProducts={this.saveProducts} />}
+                
+    //         </div>
+    //         <div class="heading bill">
+    //             <div><h1>Total</h1></div>
+    //             <div class="push"><h1>${99}</h1></div>
+    //         </div>
+    //         <footer>
+    
+    //         </footer>
+    //     </body>
+    // </html>`;
+    //console.log(html);
+        
+        //Hint: Use the generatePdf(userId, html) function here from frontend/src/calls/calls.js
+        generatePdf(localStorage.getItem('userId'), {"html":html})
+        .then(response =>{
+            console.log(response.data)
+            const url = window.URL.createObjectURL(new Blob([response.data], {type:'application/pdf'}));
+            window.open(url);
+            // const link = document.createElement('a');
+            // link.href = url;
+            // link.setAttribute('download', 'offers.pdf');
+            // document.body.appendChild(link);
+            // link.click();
+            toast.success('Download pdf completed');
+        })
+        .catch(error => {
+            toast.error('There was an error. Please try again');
+        });
     };
 
     render() {

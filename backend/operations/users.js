@@ -5,9 +5,12 @@ const ObjectId = require('mongodb').ObjectID;
 const { generateAccessToken } = require('../middleware');
 const bcrypt = require('bcrypt');
 
+
+
 module.exports = {
     async getAllUsers () {
         try {
+            console.log("entred inside operations")
             const users = await mongodb.collection('users').find({}).toArray();
             users.map(user => { user.id = user._id; delete user._id }); // We don't wanna expose which database we use to the view by the way id is stored
             return users;
@@ -21,7 +24,7 @@ module.exports = {
             const user = (await mongodb.collection('users').find({ "email": userData.email }).toArray())[0];
 
             if (user) return 409;
-
+            //console.log("entered register");
             bcrypt.hash(userData.password, 10).then(async hash => {
                 delete userData.password;
                 userData.password = hash;
@@ -36,8 +39,25 @@ module.exports = {
         try {
             // Hint: See register() function
             // Hint: Call generateAccessToken() here
-
-            return 200;
+           
+                const user = (await mongodb.collection('users').find({ "email": userData.email}).toArray())[0];
+                if (user) {
+                    const isValidPassword = bcrypt.compare(userData.password, user.password);
+                    if(isValidPassword){
+                            const token = generateAccessToken(user._id);
+                            //console.log("token in operations: "+ token)
+                            return { token: token,
+                                user : {
+                                    id : user._id
+                                } };
+                        }
+                        else
+                        return 403;
+                }
+               
+                else
+                return 409;
+ 
         } catch (error) {
             return error;
         }

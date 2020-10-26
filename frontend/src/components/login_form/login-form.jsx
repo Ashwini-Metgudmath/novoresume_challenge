@@ -22,6 +22,7 @@ class LoginForm extends Component {
             loginUser(this.state)
                 .then(response => {
                     if (response.status === 200) {
+                        //console.log("login res: "+ response.data)
                         localStorage.setItem('token', response.data.token);
                         if (response.data.user) localStorage.setItem('userId', response.data.user.id);
                         this.props.setIsLoggedIn('token' in localStorage && localStorage.token !== 'undefined');

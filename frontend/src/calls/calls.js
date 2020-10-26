@@ -1,5 +1,5 @@
 import axios from 'axios';
-const base_url = 'https://localhost:5000';
+const base_url = 'http://localhost:8080';
 
 export const loginUser = async (userData) => {
     return await axios.post(`${base_url}/users/login`, JSON.stringify(userData), {
@@ -10,6 +10,8 @@ export const loginUser = async (userData) => {
 }
 
 export const registerUser = async (userData) => {
+    console.log("entered calls")
+    console.log(userData)
     return await axios.post(`${base_url}/users/register`, JSON.stringify(userData), {
         headers: {
             "Content-Type": "application/json"
@@ -24,6 +26,7 @@ export const logoutUser = async (userData) => {
 // ITEMS
 
 export const getAllItems = async (userId, token) => {
+    console.log("calls offer: " + token)
     return await axios.get(`${base_url}/users/${userId}/offer`, {
         headers: {
             "Content-Type": "application/json",
@@ -50,8 +53,18 @@ export const saveProducts = async (userId, offerInfo) => {
     })
 }
 
-export const generatePdf = async (userId, html) => {
+export const generatePdf =  async (userId, html) => {
+   
     // Hint: This is where you need to call the backend endpoint for PDF generation
     // Hint: Find the endpoint under backend/routes/users.js
+    //console.log(html);
+    //console.log();
+   
+    return await axios.post(`${base_url}/users/${userId}/offer`, JSON.stringify(html), {
+        headers: {
+            "Content-Type": "application/json",
+            "authorization": localStorage.getItem('token')
+        }
+    })
     
 }
