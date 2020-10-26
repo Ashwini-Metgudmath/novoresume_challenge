@@ -4,20 +4,21 @@ module.exports = (
   billingAdress,
   postalCode,
   email,
-  phNumber, 
+  phNumber,
   products
 ) => {
-
-    let total = 0;
-    const productsList = products.map((product, index) =>{
-        total = total+product.price;
+  let total = 0;
+  
+  const productsList = products.map((product, index) => {
+    total = total + product.price;
     return `<div>
-                <h4>${product.title}</h4>
+                <img src="file:\\\\\\${__dirname}\\images\\${index+1}.png" />
+                <h4>${product.title} - $${product.price}</h4>
                 <p>${product.description}</p>
-            </div>`
-    })
+            </div>`;
+  });
 
- return  `
+  return `
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,7 +41,7 @@ padding-left: 2rem;
 display: flex;
 flex-direction: row;
 margin-top: 2rem;
-margin-left: 7rem;
+margin-left: 5rem;
 margin-right: 5rem;
 }
 
@@ -61,6 +62,19 @@ margin-right: 2rem;
 }
 .col2{
 margin-left: 2rem;;
+}
+
+.products{
+    align-items : left;
+    margin-left: 5rem;
+    margin-right : 4rem;
+    display : flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+img{
+    height : 10rem;
 }
 
 
@@ -90,25 +104,16 @@ margin-left: 2rem;;
         <div class="heading">
             <h1>Products</h1>
         </div>
-        <div >
-        <div></div>
             <div class="products">
             ${productsList}
             </div>
-           
-        </div>
         <div class="heading bill">
             <div><h1>Total</h1></div>
-            <div class="push" ><h1>$${total}</h1></div>
+            <div class="push" ><h1>$${total.toFixed(2)}</h1></div>
         </div>
         <footer>
-            <div class="bill">
-                <div><h4>09/08/2020</h4></div>
-                <div class="push"><h4>page 1</h4></div>
-            </div>
+            
         </footer>
     </body>
     </html>`;
-
-      
 };
