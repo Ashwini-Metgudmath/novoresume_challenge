@@ -1,10 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const generateAccessToken = (id) => {
-    //return 'yourJWT';
-    //console.log("middleware"+ id)
-    const token = jwt.sign({id}, 'secretkey');
-    //console.log("token in middleware: "+token);
+    const token = jwt.sign({id}, process.env.TOKEN_SECRET);
     return token;
 }
 
@@ -14,13 +11,14 @@ const authenticateToken = (req, res, next) => {
     //console.log("token in middleware:"+req.headers["authorization"])
     const bearerHeader = req.headers["authorization"];
     if(typeof bearerHeader !== 'undefined'){
-        const bearer = bearerHeader.split(' ');
-        const bearerToken = bearer[1];
-        req.token = bearerToken;
+       // const bearer = bearerHeader.split(' ');
+       // const bearerToken = bearer[1];
+        req.token = bearerHeader;
         
         next();
     }
     else
+
     res.sendStatus(403);
     
 }

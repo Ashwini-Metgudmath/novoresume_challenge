@@ -2,12 +2,15 @@
 
 const users = require("express").Router();
 const operations = require("../operations/users");
+const pdfTemplate = require("../documents/pdfTemplate");
 const { authenticateToken } = require("../middleware");
 const wkhtmltopdf = require('wkhtmltopdf');
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
+const pdf = require('html-pdf');
 
-//console.log("entered route");
+const { dirname } = require("path");
+
 
 users.get("/user", async (req, res, next) => {
   try {
@@ -45,7 +48,7 @@ users.post("/login", async (req, res, next) => {
 
 users.post("/logout", authenticateToken, async (req, res, next) => {
   try {
-    const decoded = jwt.verify(req.token, 'secretkey');
+    const decoded = jwt.verify(req.token, process.env.TOKEN_SECRET);
     if (decoded.id === req.body.id) {
       const result = await operations.logout(req.body);
       if (result instanceof Error) throw result;
@@ -59,7 +62,7 @@ users.post("/logout", authenticateToken, async (req, res, next) => {
 users.post("/:id/products", authenticateToken, async (req, res, next) => {
   try {
     req.body.id = req.params.id;
-    const decoded = jwt.verify(req.token, 'secretkey');
+    const decoded = jwt.verify(req.token, process.env.TOKEN_SECRET);
     if (decoded.id === req.params.id) {
       const result = await operations.saveProducts(req.body);
       if (result instanceof Error) throw result;
@@ -73,7 +76,7 @@ users.post("/:id/products", authenticateToken, async (req, res, next) => {
 users.post("/:id/billing-info", authenticateToken, async (req, res, next) => {
   try {
     req.body.id = req.params.id;
-    const decoded = jwt.verify(req.token, 'secretkey');
+    const decoded = jwt.verify(req.token, process.env.TOKEN_SECRET);
     if (decoded.id === req.params.id) {
       const result = await operations.saveBillingInfo(req.body);
       if (result instanceof Error) throw result;
@@ -86,7 +89,7 @@ users.post("/:id/billing-info", authenticateToken, async (req, res, next) => {
 
 users.get("/:id/offer", authenticateToken, async (req, res, next) => {
   try {
-    const decoded = jwt.verify(req.token, 'secretkey');
+    const decoded = jwt.verify(req.token, process.env.TOKEN_SECRET);
     if (decoded.id === req.params.id) {
       const offer = await operations.getOffer(req.params.id);
       if (offer instanceof Error) throw offer;
@@ -99,23 +102,31 @@ users.get("/:id/offer", authenticateToken, async (req, res, next) => {
 
 users.post("/:id/offer", authenticateToken, async (req, res, next) => {
   try {
-    
-    const decoded = jwt.verify(req.token, 'secretkey');
+    const {firstName, lastName, address, postalCode, phoneNr, email} = req.body.billingInfo
+    const products = req.body.products;
+    console.log("product:"+products[0].title);
+    const decoded = jwt.verify(req.token, process.env.TOKEN_SECRET);
+    console.log("decoded id:"+decoded.id);
     if (decoded.id === req.params.id) {
      
-      res.writeHead(200, {
-        "Content-Type": "application/pdf",
-        "Content-disposition": "attachment;filename=certificate.pdf",
-      });
-
-      wkhtmltopdf(req.body.html).pipe(res);
-      
-
+      //console.log(pdfTemplate(firstName, lastName, address, postalCode, email, phoneNr, products));
+      pdf.create(pdfTemplate(firstName, lastName, address, postalCode, email, phoneNr, products), {}).toFile('./documents/result.pdf', (err) =>{
+        if(err){
+          res.send(Promise.reject())
+        }
+        res.send(Promise.resolve())
+      })
       
     } else res.sendStatus(403);
   } catch (error) {
     res.sendStatus(500);
   }
 });
+
+users.get('/fetch-pdf', (req, res) =>{
+  const path = process.cwd();
+  console.log(path);
+  res.sendFile(`${path}/documents/result.pdf`);
+})
 
 module.exports = users;

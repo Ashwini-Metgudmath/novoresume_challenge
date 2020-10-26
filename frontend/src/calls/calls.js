@@ -53,18 +53,23 @@ export const saveProducts = async (userId, offerInfo) => {
     })
 }
 
-export const generatePdf =  async (userId, html) => {
+export const generatePdf =  async (userId, data) => {
    
     // Hint: This is where you need to call the backend endpoint for PDF generation
     // Hint: Find the endpoint under backend/routes/users.js
     //console.log(html);
     //console.log();
    
-    return await axios.post(`${base_url}/users/${userId}/offer`, JSON.stringify(html), {
+   
+    return await axios.post(`${base_url}/users/${userId}/offer`, JSON.stringify(data),{
         headers: {
             "Content-Type": "application/json",
             "authorization": localStorage.getItem('token')
         }
     })
     
+}
+
+export const fetchPdf = async () => {
+    return await axios.get(`${base_url}/users/fetch-pdf`, {responseType :'blob'});
 }
