@@ -40,7 +40,7 @@ export default class Home extends Component {
                 src={`${process.env.PUBLIC_URL}/images/icons/offer1.png`}
                 alt="graphic image"
               />
-              <h2>Amazing looking quotes</h2>
+              <h3>Amazing looking quotes</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur
                 <br />
@@ -55,7 +55,7 @@ export default class Home extends Component {
                 src={`${process.env.PUBLIC_URL}/images/icons/fast1.png`}
                 alt="graphic image"
               />
-              <h2>Lighting fast quoting</h2>
+              <h3>Lighting fast quoting</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur
                 <br />
@@ -70,7 +70,7 @@ export default class Home extends Component {
                 src={`${process.env.PUBLIC_URL}/images/icons/log1.png`}
                 alt="graphic image"
               />
-              <h2>Live Changelog</h2>
+              <h3>Live Changelog</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur
                 <br />
@@ -85,7 +85,7 @@ export default class Home extends Component {
             <span>Try it out today</span>
           </div>
         </section>
-        <section className="my-services blog" id="blogPosts">
+        <section className="my-services" id="blogPosts">
           <h2 className="section__title section__title--services">
             Recent blog posts
           </h2>
@@ -95,29 +95,29 @@ export default class Home extends Component {
                 src={`${process.env.PUBLIC_URL}/images/background/image-1.png`}
                 alt="graphic image"
               />
-              <h2>Promotional items</h2>
+              <h3>Promotional items</h3>
               <p>
                 You are probably familiar with free <br />
                 merchandise offered by companies at no <br /> cost at all. This
                 is because they know...
               </p>
               <span>
-                <a href="#">Read more...</a>
+                <a href="#">Read now...</a>
               </span>
             </div>
-            <div className="service" id="eachBlog">
+            <div className="service">
               <img
                 src={`${process.env.PUBLIC_URL}/images/background/image-3.png`}
                 alt="graphic image"
               />
-              <h2>Promotional items</h2>
+              <h3>Promotional items</h3>
               <p>
                 You are probably familiar with free <br />
                 merchandise offered by companies at no <br /> cost at all. This
                 is because they know...
               </p>
               <span>
-                <a href="#">Read more...</a>
+                <a href="#">Read now...</a>
               </span>
             </div>
             <div className="service">
@@ -125,14 +125,14 @@ export default class Home extends Component {
                 src={`${process.env.PUBLIC_URL}/images/background/image-2.png`}
                 alt="graphic image"
               />
-              <h2>Promotional items</h2>
+              <h3>Promotional items</h3>
               <p>
                 You are probably familiar with free <br />
                 merchandise offered by companies at no <br /> cost at all. This
                 is because they know...
               </p>
               <span>
-                <a href="#">Read more...</a>
+                <a href="#">Read now...</a>
               </span>
             </div>
           </div>

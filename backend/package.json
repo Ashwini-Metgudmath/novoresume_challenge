@@ -30,6 +30,7 @@
     "html-pdf": "^2.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.2",
+    "phantomjs": "^2.1.7",
     "wkhtmltopdf": "^0.3.4"
   },
   "devDependencies": {

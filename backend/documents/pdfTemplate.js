@@ -1,10 +1,5 @@
 module.exports = (
-  firstName,
-  lastName,
-  billingAdress,
-  postalCode,
-  email,
-  phNumber,
+  billingInfo,
   products
 ) => {
   let total = 0;
@@ -14,7 +9,7 @@ module.exports = (
     return `<div>
                 <img src="file:\\\\\\${__dirname}\\images\\${index+1}.png" />
                 <h4>${product.title} - $${product.price}</h4>
-                <p>${product.description}</p>
+                <p class="description">${product.description}</p>
             </div>`;
   });
 
@@ -35,6 +30,7 @@ margin-left: 3rem;
 margin-right: 3rem;
 padding: 0.001rem;
 padding-left: 2rem;
+
 }
 
 .user-info{
@@ -64,18 +60,27 @@ margin-right: 2rem;
 margin-left: 2rem;;
 }
 
-.products{
-    align-items : left;
+.products {
+    align-items: left;
     margin-left: 5rem;
-    margin-right : 4rem;
-    display : flex;
+    margin-right: 4rem;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    
+    padding-top: 2rem;
+        
 }
+
 img{
-    height : 10rem;
+    width : 15rem;
 }
+
+
+
+.description{
+    width : 15rem;
+}
+
 
 
 </style>
@@ -88,17 +93,17 @@ img{
         <div class="user-info">
             <div class="col1">
                 <h3>First Name  Last name</h3>
-                <p>${firstName}  ${lastName}</p>
+                <p>${billingInfo.firstName}  ${billingInfo.lastName}</p>
                 <h3>Billing Adress</h3>
-                <p>${billingAdress}</p>
+                <p>${billingInfo.address}</p>
                 <h3>Postal Code</h3>
-                <p>${postalCode}</p>
+                <p>${billingInfo.postalCode}</p>
             </div>
             <div >
                 <h3>Email</h3>
-                <p>${email}</p>
+                <p>${billingInfo.email}</p>
                 <h3>Telephone number</h3>
-                <p>${phNumber}</p>
+                <p>${billingInfo.phoneNr}</p>
             </div>
         </div>
         <div class="heading">
