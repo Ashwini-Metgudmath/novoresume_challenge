@@ -66,9 +66,9 @@ The app now should be running on https://localhost:3000.
 ### Task 1: pending
 
 ### Task 2: Login function implemented using JSON Web Tokens ('jsonwebtoken')
-            Generating token by jwt.sign() using 
-            Authenticating token by authenticateToken()
-            Verifying token using jwt.verify()
+Generating token by jwt.sign() using 
+Authenticating token by authenticateToken()
+Verifying token using jwt.verify()
 
 ### Task 3: Generating html and creating pdf of html page done using html-pdf ( Bonus: adding images to the pdf is implemented) 
             Implemented solution by taking a defferent apporch, used html-pdf instead of wkhtmltopdf.
