@@ -10,10 +10,12 @@ const authenticateToken = (req, res, next) => {
   // Hint: You will see this function being passed to authenticated action routes in code. See backend/routes/users.js to explore
 
   const bearerHeader = req.headers["authorization"];
+  
   if (typeof bearerHeader !== "undefined") {
     const bearer = bearerHeader.split(" ");
     const bearerToken = bearer[1];
-    req.token = bearerToken;
+    const decodedId = jwt.verify(bearerToken, process.env.TOKEN_SECRET);
+    req.id = decodedId.id;
     next();
   } else res.sendStatus(403);
 };
