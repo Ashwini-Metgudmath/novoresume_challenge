@@ -69,22 +69,18 @@ The app now should be running on https://localhost:3000.
 
 ### Task 2: Login function implemented using JSON Web Tokens ('jsonwebtoken')
 * Generating token by jwt.sign() 
-
 * Authenticating token by authenticateToken()
-
 * Verifying token using jwt.verify()
 
 ### Task 3: Generating html and creating pdf of html page done using html-pdf ( Bonus: adding images to the pdf is implemented) 
-Implemented solution by taking a defferent apporch, used html-pdf instead of wkhtmltopdf.
-            
-html template is created and stored in backend folder in a file called pdfTemplate.js.
-            
-Only user-info object is passed from frontend to the api instead of complete html file and user-info embedded in html dynamically.
-            pdf.create()  will generate pdf by taking html as input and store it in a folder called documents at the backend.
-            I have created another endpoint called fetch-pdf/ which will return pdf to frontend.
-            At frontend saveAs() from file-saver downloads the file.
+* Implemented solution by taking a defferent apporch, used html-pdf instead of wkhtmltopdf.           
+* html template is created and stored in backend folder in a file called pdfTemplate.js.         
+* Only user-info object is passed from frontend to the api instead of complete html file and user-info embedded in html dynamically.    
+* pdf.create()  will generate pdf by taking html as input and store it in a folder called documents at the backend.
+* I have created another endpoint called fetch-pdf/ which will return pdf to frontend.
+* At frontend saveAs() from file-saver downloads the file.
 
 ### Task 4: Implemented the landing page (Bonus: Making the page responsive is done)
-            Implemented the landing page with React by filling home.jsx according to the landing page mock-up. The page responsive implented using media queries.
+* Implemented the landing page with React by filling home.jsx according to the landing page mock-up. The page responsive implented using media queries.
             
 
