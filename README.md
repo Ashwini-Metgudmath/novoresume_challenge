@@ -79,11 +79,11 @@ The app now should be running on https://localhost:3000.
 * ***pdf.create()***  will generate pdf by taking html as input and store it in a folder called documents at the backend.
 * I have created new endpoint called ***fetch-pdf/*** which will return pdf to frontend.
 * At frontend ***saveAs()*** from file-saver downloads the file.
-* ***adding images to the pdf functionality implemented**
+* **Bonus: Adding images to the pdf functionality implemented**
 
 ### Task 4: Implemented the landing page (**Bonus: Making the page responsive is done**)
 * Implemented the landing page with React by filling home.jsx according to the landing page mock-up. 
-* **Making page responsive is done using media queries.**
+* **Bonus: Making page responsive is done using media queries.**
 
             
 
