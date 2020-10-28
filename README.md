@@ -67,6 +67,7 @@ The app now should be running on https://localhost:3000.
 
 ### Task 1: Unit tests for login api using chai and mocha
 * Written unit test for login functionality
+* Currently unit tests run on actual server, improvements need to be done for mocking mongodb.
 
 ### Task 2: Login function implemented using JSON Web Tokens ('jsonwebtoken')
 * Passowrd validation is done in ***login()*** by using ***bcrypt.compare()***
