@@ -34,7 +34,7 @@ export const getAllItems = async (userId, token) => {
   return await axios.get(`${base_url}/users/${userId}/offer`, {
     headers: {
       "Content-Type": "application/json",
-      authorization: "Bearer" + " " + token,
+      authorization: token,
     },
   });
 };
@@ -46,7 +46,7 @@ export const saveBillingInfo = async (userId, billingInfo) => {
     {
       headers: {
         "Content-Type": "application/json",
-        authorization: "Bearer" + " " + localStorage.getItem("token"),
+        authorization: localStorage.getItem("token"),
       },
     }
   );
@@ -59,7 +59,7 @@ export const saveProducts = async (userId, offerInfo) => {
     {
       headers: {
         "Content-Type": "application/json",
-        authorization: "Bearer" + " " + localStorage.getItem("token"),
+        authorization: localStorage.getItem("token"),
       },
     }
   );
@@ -75,7 +75,7 @@ export const generatePdf = async (userId, data) => {
     {
       headers: {
         "Content-Type": "application/json",
-        authorization: "Bearer" + " " + localStorage.getItem("token"),
+        authorization: localStorage.getItem("token"),
       },
     }
   );

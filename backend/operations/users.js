@@ -45,7 +45,7 @@ module.exports = {
                     const isValidPassword = bcrypt.compare(userData.password, user.password);
                     if(isValidPassword){
                             const token = generateAccessToken(user._id);
-                            return { token: token,
+                            return { token: 'Bearer'+" "+token,
                                 user : {
                                     id : user._id
                                 } };

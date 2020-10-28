@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const generateAccessToken = (id) => {
-  const token = jwt.sign({ id }, process.env.TOKEN_SECRET);
+  const token = jwt.sign({id}, process.env.TOKEN_SECRET);
   return token;
 };
 
@@ -15,7 +15,6 @@ const authenticateToken = (req, res, next) => {
     const bearer = bearerHeader.split(" ");
     const bearerToken = bearer[1];
     const decodedId = jwt.verify(bearerToken, process.env.TOKEN_SECRET);
-
     req.id = decodedId.id;
     next();
   } else res.sendStatus(403);
