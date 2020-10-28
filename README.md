@@ -65,7 +65,8 @@ The app now should be running on https://localhost:3000.
 
 # Solution overview 
 
-### Task 1: pending
+### Task 1: Unit tests for login api using chai and mocha
+* Written unit test for login functionality
 
 ### Task 2: Login function implemented using JSON Web Tokens ('jsonwebtoken')
 * Passowrd validation is done in ***login()*** by using ***bcrypt.compare()***

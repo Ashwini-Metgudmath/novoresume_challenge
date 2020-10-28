@@ -15,6 +15,7 @@ const authenticateToken = (req, res, next) => {
     const bearer = bearerHeader.split(" ");
     const bearerToken = bearer[1];
     const decodedId = jwt.verify(bearerToken, process.env.TOKEN_SECRET);
+
     req.id = decodedId.id;
     next();
   } else res.sendStatus(403);
